@@ -18,5 +18,7 @@ public class HeroGen{
         Heroes newHero = new Heroes(heroName, heroType, 10, 10, 10, armor, helm, weapon, 0, 0);
     }
 
-    HeroGen()
+    HeroGen(String [] heroes){
+        
+    }
 }
