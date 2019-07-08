@@ -16,11 +16,11 @@ public class Heroes{
     private Weapon weapon;
 
     Heroes(String name, String heroClass, int attack, int defense, int hitPoints,
-                                        Armor armor, Helm helm, Weapon weapon){
+                                        Armor armor, Helm helm, Weapon weapon, int level, int exp){
         this.name = name;
         this.heroClass = heroClass;
-        this.level = 0;
-        this.exp = 0;
+        this.level = level;
+        this.exp = exp;
         this.attack = attack;
         this.defense = defense;
         this.hitPoints = hitPoints;
