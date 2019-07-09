@@ -1,24 +1,33 @@
 package src;
 
 import src.character.*;
+import src.*;
 import java.util.HashMap;
 
 public class HeroGen{
     
     HeroGen(String heroType, String heroName){
-        HashMap<String, String, String , String > heroClass = new HashMap<String, String, String, String>();
-        heroClass.put("wizard", "10", "5", "5");
-        heroClass.put("shieldMaiden", "5", "10", "5");
-        heroClass.put("swordsman", "5", "5", "10");
-        heroClass.put("adventurer", "7", "6", "7");
+        HashMap<String, String[]> heroClass = new HashMap<String, String[]>();
+        String [][] details = {{"10", "5", "5"},{"5", "10", "5"},{"5", "5", "10"},{"7", "6", "7"}};
+        heroClass.put("wizard", details[0]);
+        heroClass.put("shieldMaiden", details[1]);
+        heroClass.put("swordsman", details[2]);
+        heroClass.put("adventurer", details[3]);
 
         Helm helm = new Helm("default " + heroType + " helm",Integer.parseInt(heroClass.get(heroType)[0]));
         Armor armor = new Armor("default " + heroType + " armor", Integer.parseInt(heroClass.get(heroType)[1]));
         Weapon weapon = new Weapon("default " + heroType + " weapon", Integer.parseInt(heroClass.get(heroType)[2]));
-        Heroes newHero = new Heroes(heroName, heroType, 10, 10, 10, armor, helm, weapon, 0, 0);
+        Heroes newHero = new Heroes(heroName, heroType, 10, 10, 50, armor, helm, weapon, 0, 0);
+        GameGen.heroList.add(newHero);
     }
 
-    HeroGen(String [] heroes){
-        
+    HeroGen(String [][] heroes){
+        for (String[] line : heroes){
+            Heroes temp = new Heroes(line[0], line[1], Integer.parseInt(line[2]), Integer.parseInt(line[3]), 
+                Integer.parseInt(line[4]), new Armor(line[5], Integer.parseInt(line[6])), 
+                new Helm(line[7], Integer.parseInt(line[8])), new Weapon(line[9], Integer.parseInt(line[10])),
+                Integer.parseInt(line[11]), Integer.parseInt(line[12]));
+            GameGen.heroList.add(temp);
+        }
     }
 }

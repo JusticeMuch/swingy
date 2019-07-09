@@ -15,17 +15,99 @@ public class Heroes{
     private Armor armor;
     private Weapon weapon;
 
-    Heroes(String name, String heroClass, int attack, int defense, int hitPoints,
-                                        Armor armor, Helm helm, Weapon weapon, int level, int exp){
-        this.name = name;
-        this.heroClass = heroClass;
-        this.level = level;
-        this.exp = exp;
-        this.attack = attack;
-        this.defense = defense;
-        this.hitPoints = hitPoints;
-        this.helm = helm;
-        this.armor = armor;
+    public Heroes(String name, String heroClass, int attack, int defense, int hitPoints, Armor armor, Helm helm,
+            Weapon weapon, int level, int exp) {
+        this.setName(name);
+        this.setHeroClass(heroClass);
+        this.setLevel(level);
+        this.setExp(exp);
+        this.setAttack(attack);
+        this.setDefense(defense);
+        this.setHitPoints(hitPoints);
+        this.setHelm(helm);
+        this.setArmor(armor);
+        this.setWeapon(weapon);
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
+
+    public Armor getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+
+    public Helm getHelm() {
+        return helm;
+    }
+
+    public void setHelm(Helm helm) {
+        this.helm = helm;
+    }
+
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getHeroClass() {
+        return heroClass;
+    }
+
+    public void setHeroClass(String heroClass) {
+        this.heroClass = heroClass;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
 }
