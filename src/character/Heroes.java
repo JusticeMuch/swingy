@@ -29,6 +29,11 @@ public class Heroes{
         this.setWeapon(weapon);
     }
 
+    public String[] toArray(){
+        String[] res = {this.getName(), this.getHeroClass(), Integer.toString(};
+        //must still finish
+    }
+
     public Weapon getWeapon() {
         return weapon;
     }

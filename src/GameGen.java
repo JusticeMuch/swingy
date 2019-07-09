@@ -6,6 +6,5 @@ import src.*;
 
 public class GameGen{
     static public ArrayList <Heroes> heroList =  new ArrayList <Heroes>();
-
-    
+    public static int level;
 }
