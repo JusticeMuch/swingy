@@ -8,7 +8,7 @@ public class HeroGen{
     
     HeroGen(String heroType, String heroName){
         HashMap<String, String[]> heroClass = new HashMap<String, String[]>();
-        String [][] details = {{"10", "5", "5"},{"5", "10", "5"},{"5", "5", "10"},{"7", "6", "7"}};
+        String [][] details = {{"10", "5", "50"},{"5", "10", "75"},{"5", "5", "50"},{"7", "6", "60"}};
         heroClass.put("wizard", details[0]);
         heroClass.put("shieldMaiden", details[1]);
         heroClass.put("swordsman", details[2]);

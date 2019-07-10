@@ -30,8 +30,11 @@ public class Heroes{
     }
 
     public String[] toArray(){
-        String[] res = {this.getName(), this.getHeroClass(), Integer.toString(};
-        //must still finish
+        String[] res = {this.getName(), this.getHeroClass(), Integer.toString(this.getAttack()) , Integer.toString(this.getDefense()),
+                        Integer.toString(this.getHitPoints()) , this.getArmor().getArmorName() , Integer.toString(this.getArmor().getAddedDefense()) ,
+                        this.getHelm().getHelmName(), Integer.toString(this.getHelm().getAddedHitPoints()), this.getWeapon().getWeaponName(),
+                        Integer.toString(this.getWeapon().getAddedAttack()), Integer.toString(this.getLevel()), Integer.toString(this.getExp())};
+        return res;
     }
 
     public Weapon getWeapon() {
