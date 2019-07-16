@@ -32,7 +32,7 @@ public class Enemy{
         this.health = health;
     }
 
-    public void setEnemyAttack(){
+    public void setEnemyAttack(int attack){
         this.attack = attack;
     }
 }
