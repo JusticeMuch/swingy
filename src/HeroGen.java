@@ -1,7 +1,6 @@
 package src;
 
 import src.character.*;
-import src.*;
 import java.util.HashMap;
 
 public class HeroGen{

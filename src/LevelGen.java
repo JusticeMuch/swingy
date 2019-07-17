@@ -1,7 +1,5 @@
 package src;
 
-import src.*;
-import src.character.*;
 import java.util.*;
 
 public class LevelGen{

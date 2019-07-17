@@ -2,7 +2,7 @@ package src;
 
 import src.character.*;
 import java.util.ArrayList;
-import src.*;
+import java.util.Random;
 
 public class GameGen{
     
@@ -33,7 +33,7 @@ public class GameGen{
         return new Enemy(choices[rand.nextInt(7)], level * 20 , level * 10);
     }
 
-    public void getCurrentHero(){
+    public Heroes getCurrentHero(){
         return this.current;
     }
 }

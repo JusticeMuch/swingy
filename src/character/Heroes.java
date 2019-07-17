@@ -1,7 +1,5 @@
 package src.character;
 
-import src.character.*;
-
 public class Heroes{
     
     private String name;
