@@ -1,3 +1,3 @@
 find . -name "*.java" > src.txt
-javac -sourcepath @src.txt
+javac @src.txt
 java src.Console

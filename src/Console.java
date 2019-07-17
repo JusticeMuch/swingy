@@ -9,7 +9,7 @@ import src.*;
 public class Console {
 
     public static GameGen Console;
-    // public static HeroGen hgen;
+    public static HeroGen hgen;
 
     public static void main(String[] args) throws IOException {
 
@@ -27,17 +27,17 @@ public class Console {
         } catch (FileNotFoundException e) {
             System.out.println("No savefile and cannot be created");
         }
-    //     while ((fileContents[++counter] = ReadWrite.reader.readLine()) != null);
-    //     String temp [][] = new String [100][];
-    //     for (int i = 0; i < fileContents.length; i++){
-    //         temp[i] = fileContents[i].split(" ");
-    //     }
-    //    hgen = new HeroGen(temp);
-    //     for (Heroes t : GameGen.heroList){
-    //         for (String j : t.toArray()){
-    //             System.out.println(j);
-    //         }
-    //     }
+        while ((fileContents[++counter] = ReadWrite.reader.readLine()) != null);
+        String temp [][] = new String [100][13];
+        for (int i = 0; i < fileContents.length; i++){
+            temp[i] = fileContents[i].split(" ");
+        }
+       hgen = new HeroGen(temp);
+        for (Heroes t : GameGen.heroList){
+            for (String j : t.toArray()){
+                System.out.println(j);
+            }
+        }
             
     }
 

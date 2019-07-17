@@ -3,6 +3,7 @@ package src;
 import src.character.*;
 import java.util.ArrayList;
 import java.util.Random;
+import src.*;
 
 public class GameGen{
     
