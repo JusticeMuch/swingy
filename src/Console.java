@@ -13,7 +13,7 @@ public class Console {
     public static void main(String[] args) throws IOException {
 
         Console = new GameGen();
-        String[][] fileContents = new String[100][];
+        String[] fileContents = new String[100];
         int counter = -1;
         ReadWrite.saveFile = new File("heroes.txt");
         try {
@@ -26,8 +26,8 @@ public class Console {
         } catch (FileNotFoundException e) {
             System.out.println("No savefile and cannot be created");
         }
-        while ((fileContents[++counter] = ReadWrite.reader.readLine().split(" ")) != null);
-        System.out.println(fileContents[0][0]);
+        while ((fileContents[++counter] = ReadWrite.reader.readLine()) != null);
+            
     }
 
 }
