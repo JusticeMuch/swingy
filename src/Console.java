@@ -12,6 +12,11 @@ public class Console {
     public static GameGen Console;
     public static HeroGen hgen;
 
+    public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+       }
+
     public static void main(String[] args) throws IOException {
 
         Console = new GameGen();
@@ -31,19 +36,31 @@ public class Console {
             System.out.println("No savefile and cannot be created");
         }
         while ((fileContents[++counter] = ReadWrite.reader.readLine()) != null);
-        String temp [][] = new String [100][13];
+        String temp0 [][] = new String [100][13];
         for (int i = 0; i < fileContents.length && fileContents[i] != null; i++){
-            temp[i] = fileContents[i].split(" ");
+            temp0[i] = fileContents[i].split(" ");
         }
-       hgen = new HeroGen(temp);
+       hgen = new HeroGen(temp0);
        System.out.println("Would you like to play a game (y/n), any answer besides no is yes , right?");
        tempAnswer = ReadWrite.inp.nextLine().toLowerCase().trim();
-       System.out.println(tempAnswer);
-       if (tempAnswer == "no" || tempAnswer == "n"){
+       if (tempAnswer.matches("no")|| tempAnswer.matches("n"))
             return ;
-       }
         System.out.println("Then let us begin");
-
+        while (!tempAnswer.matches("1") && !tempAnswer.matches("2")){
+            clearScreen();
+            System.out.println("Please select either to create or load a character : 1 is to create , 2 is to load");
+            tempAnswer = ReadWrite.inp.nextLine().trim();
+        }
+        if (tempAnswer.matches("2")){
+            System.out.println("Here are your options :");
+            int i = 0;
+            for (Heroes temp : GameGen.heroList){
+                System.out.println("Option " + ++i + "  Name : " + temp.getName() + " class : " + temp.getHeroClass());
+            }
+        }else{
+            
+        }
+       
     }
 
 }
