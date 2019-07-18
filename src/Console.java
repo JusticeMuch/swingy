@@ -3,6 +3,7 @@ package src;
 import src.character.*;
 
 import java.io.*;
+import java.util.*;
 
 import src.*;
 
@@ -14,6 +15,8 @@ public class Console {
     public static void main(String[] args) throws IOException {
 
         Console = new GameGen();
+        String tempAnswer;
+        ReadWrite.inp = new Scanner(System.in);
         String[] fileContents = new String[100];
         int counter = -1;
         ReadWrite.saveFile = new File("heroes.txt");
@@ -33,12 +36,14 @@ public class Console {
             temp[i] = fileContents[i].split(" ");
         }
        hgen = new HeroGen(temp);
-        for (Heroes t : GameGen.heroList){
-            for (String j : t.toArray()){
-                System.out.println(j);
-            }
-        }
-            
+       System.out.println("Would you like to play a game (y/n), any answer besides no is yes , right?");
+       tempAnswer = ReadWrite.inp.nextLine().toLowerCase().trim();
+       System.out.println(tempAnswer);
+       if (tempAnswer == "no" || tempAnswer == "n"){
+            return ;
+       }
+        System.out.println("Then let us begin");
+
     }
 
 }
