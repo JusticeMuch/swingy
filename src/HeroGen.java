@@ -22,6 +22,9 @@ public class HeroGen{
 
     HeroGen(String [][] heroes){
         for (String[] line : heroes){
+            if (line[0] == null){
+                break;
+            }
             Heroes temp = new Heroes(line[0], line[1], Integer.parseInt(line[2]), Integer.parseInt(line[3]), 
                 Integer.parseInt(line[4]), new Armor(line[5], Integer.parseInt(line[6])), 
                 new Helm(line[7], Integer.parseInt(line[8])), new Weapon(line[9], Integer.parseInt(line[10])),

@@ -9,6 +9,7 @@ public class LevelGen{
         return this.grid;
     }
 
+
     public void setLevelGrid(int level){
         if (level >= 1  && level <= 7){
             level = (level - 1) * 5 + 10 - (level % 2);

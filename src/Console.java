@@ -29,7 +29,7 @@ public class Console {
         }
         while ((fileContents[++counter] = ReadWrite.reader.readLine()) != null);
         String temp [][] = new String [100][13];
-        for (int i = 0; i < fileContents.length; i++){
+        for (int i = 0; i < fileContents.length && fileContents[i] != null; i++){
             temp[i] = fileContents[i].split(" ");
         }
        hgen = new HeroGen(temp);
