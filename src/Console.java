@@ -21,6 +21,7 @@ public class Console {
 
         Console = new GameGen();
         String tempAnswer;
+        String tempAnswer2;
         ReadWrite.inp = new Scanner(System.in);
         String[] fileContents = new String[100];
         int counter = -1;
@@ -57,8 +58,31 @@ public class Console {
             for (Heroes temp : GameGen.heroList){
                 System.out.println("Option " + ++i + "  Name : " + temp.getName() + " class : " + temp.getHeroClass());
             }
-        }else{
-            
+        }else if (tempAnswer.matches("1")){
+            System.out.println("Please give your hero a name ?");
+            tempAnswer = ReadWrite.inp.nextLine().trim();
+            System.out.println("Please select a class from 1 of these four by selecting a number :");
+            System.out.println("1 . Wizard");
+            System.out.println("2 . Shield Maiden");
+            System.out.println("3 . Swordsman");
+            System.out.println("4 . Adventurer");
+            tempAnswer2 = ReadWrite.inp.nextLine().trim();
+            switch (Integer.parseInt(tempAnswer2)){
+                case 1: 
+                    tempAnswer2 = "wizard";
+                case 2: 
+                    tempAnswer2 = "shieldMaiden";
+                case 3: 
+                    tempAnswer2 = "swordsman";
+                case 4: 
+                    tempAnswer2 = "adventurer";
+            }
+            System.out.println(tempAnswer2);
+            hgen = new HeroGen(tempAnswer2, tempAnswer);
+            int i = 0;
+            for (Heroes temp : GameGen.heroList){
+                System.out.println("Option " + ++i + "  Name : " + temp.getName() + " class : " + temp.getAttack());
+            }
         }
        
     }
