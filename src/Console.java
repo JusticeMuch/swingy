@@ -58,10 +58,17 @@ public class Console {
             System.out.println("Here are your options :");
             int i = 0;
             for (Heroes temp : GameGen.heroList){
+                if (temp == null)
+                    break;
                 System.out.println("Option " + ++i + "  Name : " + temp.getName() + " class : " + temp.getHeroClass());
-                System.out.println("Please select the corresponding number to select a hero");
-                tempAnswer =  
             }
+            tempAnswer2 = "56565";
+            while (Integer.parseInt(tempAnswer2) - 1 >= GameGen.heroList.size() && Integer.parseInt(tempAnswer2) - 1 <= 0){
+                System.out.println("Please select the corresponding number to select a hero");
+                tempAnswer2 = ReadWrite.inp.nextLine().trim();
+            }
+            GameGen.current = GameGen.heroList.get(Integer.parseInt(tempAnswer2) - 1);
+            System.out.println(GameGen.current.getName());
         }else if (tempAnswer.matches("1")){
             System.out.println("Please give your hero a name ?");
             tempAnswer = ReadWrite.inp.nextLine().trim();
