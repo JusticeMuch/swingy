@@ -5,6 +5,8 @@ import src.character.*;
 import java.io.*;
 import java.util.*;
 
+import javax.lang.model.util.ElementScanner6;
+
 import src.*;
 
 public class Console {
@@ -57,6 +59,8 @@ public class Console {
             int i = 0;
             for (Heroes temp : GameGen.heroList){
                 System.out.println("Option " + ++i + "  Name : " + temp.getName() + " class : " + temp.getHeroClass());
+                System.out.println("Please select the corresponding number to select a hero");
+                tempAnswer =  
             }
         }else if (tempAnswer.matches("1")){
             System.out.println("Please give your hero a name ?");
@@ -67,21 +71,22 @@ public class Console {
             System.out.println("3 . Swordsman");
             System.out.println("4 . Adventurer");
             tempAnswer2 = ReadWrite.inp.nextLine().trim();
-            switch (Integer.parseInt(tempAnswer2)){
-                case 1: 
-                    tempAnswer2 = "wizard";
-                case 2: 
-                    tempAnswer2 = "shieldMaiden";
-                case 3: 
-                    tempAnswer2 = "swordsman";
-                case 4: 
-                    tempAnswer2 = "adventurer";
-            }
+            if (tempAnswer2.matches("1"))
+                tempAnswer2 = "wizard";
+            else if (tempAnswer2.matches("2"))
+                tempAnswer2 = "shieldMaiden";
+            else if (tempAnswer2.matches("3"))
+                tempAnswer2 = "swordsman";
+            else if (tempAnswer2.matches("4"))
+                tempAnswer2 = "adventurer";
+            else
+                tempAnswer2 = "adventurer";
+                    
             System.out.println(tempAnswer2);
             hgen = new HeroGen(tempAnswer2, tempAnswer);
             int i = 0;
             for (Heroes temp : GameGen.heroList){
-                System.out.println("Option " + ++i + "  Name : " + temp.getName() + " class : " + temp.getAttack());
+                System.out.println("Option " + ++i + "  Name : " + temp.getName() + " class : " + temp.getHeroClass());
             }
         }
        

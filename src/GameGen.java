@@ -9,7 +9,7 @@ public class GameGen{
     
     static public ArrayList <Heroes> heroList =  new ArrayList <Heroes>();
     public static int level;
-    private Heroes current;
+    public static Heroes current;
 
     public void generateArtefact(int level){
 
@@ -37,4 +37,5 @@ public class GameGen{
     public Heroes getCurrentHero(){
         return this.current;
     }
+
 }
