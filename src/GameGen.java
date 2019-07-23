@@ -33,9 +33,4 @@ public class GameGen{
         String [] choices = {"Ork", "Wizard", "Elf", "Mud Monster", "Itachi", "Jiraiya", "Marshall D. Teach"};
         return new Enemy(choices[rand.nextInt(7)], level * 20 , level * 10);
     }
-
-    public Heroes getCurrentHero(){
-        return this.current;
-    }
-
 }

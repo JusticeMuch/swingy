@@ -18,7 +18,6 @@ public class HeroGen{
         Weapon weapon = new Weapon("default " + heroType + " weapon", Integer.parseInt(heroClass.get(heroType)[2]));
         Heroes newHero = new Heroes(heroName, heroType, 10, 10, 50, armor, helm, weapon, 0, 0);
         GameGen.current = newHero;
-        GameGen.heroList.add(newHero);
     }
 
     HeroGen(String [][] heroes){
