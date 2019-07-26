@@ -125,7 +125,7 @@ public class GameGen{
             }
             System.out.println("Please select one of the heroes by inputting the number of the corresponding index");
             i = ReadWrite.inp.nextInt();
-            if (i < )
+            if (i >= 0 && i >= GameGen.heroList.size())
         }else if ((!(temp == "yes") || !(temp == "y"))){
             clearScreen();
             System.out.println("Then lets begin the game !!");
