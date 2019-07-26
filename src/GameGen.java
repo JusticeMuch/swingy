@@ -104,10 +104,10 @@ public class GameGen{
             ReadWrite.writer = new PrintWriter(ReadWrite.saveFile);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-		}
+        }
+        
         for (Heroes j : GameGen.heroList){
             for (String k : j.toArray()){
-                System.out.println(k);
                 ReadWrite.writer.print(k+" ");
             }
             ReadWrite.writer.println();
@@ -116,18 +116,42 @@ public class GameGen{
         ReadWrite.writer.close();
     }
 
+    public void selectCharacter(String input){
+        if (!(temp == "1")){
+            System.out.println("Here are your options : ");
+            int i = -1;
+            for (Heroes j : GameGen.heroList){
+                System.out.print("Index : " + ++i + " Hero Name : " + j.getName() + " Hero Class: "+ j.getHeroClass() + " Level: " + j.getLevel());
+            }
+            System.out.println("Please select one of the heroes by inputting the number of the corresponding index");
+            i = ReadWrite.inp.nextInt();
+            if (i < )
+        }else if ((!(temp == "yes") || !(temp == "y"))){
+            clearScreen();
+            System.out.println("Then lets begin the game !!");
+        }else{
+            System.out.println("Input invalid , closing game");
+            this.exitGame();
+            return;
+        }
+    }
+
     public void startGame(){
         System.out.println("Would you like to start a game (Y/N) ?");
         temp = ReadWrite.inp.nextLine().trim().toLowerCase();
         if (!(temp == "no") || !(temp == "n")){
+            this.exitGame();
             return ;
         }else if ((!(temp == "yes") || !(temp == "y"))){
+            clearScreen();
             System.out.println("Then lets begin the game !!");
         }else{
             System.out.println("Input invalid , closing game");
+            this.exitGame();
             return;
         }
-        
+        System.out.println("Would you like to load or create a character (1 to load / 2 to save) ?");
+        this.selectCharacter(ReadWrite.inp.nextLine().trim().toLowerCase());
     }
 }
 
