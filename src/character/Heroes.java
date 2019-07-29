@@ -119,7 +119,7 @@ public class Heroes{
         this.name = name;
     }
 
-    Heroes(String heroType, String heroName){
+    public Heroes(String heroType, String heroName){
         HashMap<String, String[]> heroClass = new HashMap<String, String[]>();
         String [][] details = {{"10", "5", "50"},{"5", "10", "75"},{"5", "5", "50"},{"7", "6", "60"}};
         heroClass.put("wizard", details[0]);

@@ -117,18 +117,48 @@ public class GameGen{
     }
 
     public void selectCharacter(String input){
-        if (!(temp == "1")){
+        String temp = null;
+        String [] heroesClass = {"wizard", "shieldMaiden", "swordsman", "adventurer"};
+        int i = -1;
+        if (input.matches("1")){
             System.out.println("Here are your options : ");
-            int i = -1;
+            
             for (Heroes j : GameGen.heroList){
-                System.out.print("Index : " + ++i + " Hero Name : " + j.getName() + " Hero Class: "+ j.getHeroClass() + " Level: " + j.getLevel());
+                System.out.println("Index : " + ++i + " Hero Name : " + j.getName() + " Hero Class: "+ j.getHeroClass() + " Level: " + j.getLevel());
             }
             System.out.println("Please select one of the heroes by inputting the number of the corresponding index");
             i = ReadWrite.inp.nextInt();
-            if (i >= 0 && i >= GameGen.heroList.size())
-        }else if ((!(temp == "yes") || !(temp == "y"))){
+            if (i >= 0 && i < GameGen.heroList.size()){
+                this.currentHero = GameGen.heroList.get(i);
+            }else{
+                clearScreen();
+                System.out.println("Error in selection");
+                this.selectCharacter(input);
+            }
+            System.out.println("Your hero's name is " + this.currentHero.getName() + " and his class is " + this.getCurrentHero().getHeroClass());
+        }else if (input.matches("2")){
             clearScreen();
-            System.out.println("Then lets begin the game !!");
+            System.out.println("Please select one of the classes by selecting the corresponding index");
+            System.out.println("1. Wizard");
+            System.out.println("2. Shield Maiden");
+            System.out.println("3. Swordsman");
+            System.out.println("4. Adventurer");
+            i = ReadWrite.inp.nextInt();
+            if (i < 1 && i > 4 ){
+                clearScreen();
+                System.out.println("Please note that your input is out of bounds, so here is another try");
+                this.selectCharacter(input);
+            }else{
+                System.out.println("Please give your hero a name");
+                temp = ReadWrite.inp.nextLine().trim();
+                if (temp.matches("")){
+                    System.out.println("Please note that your input is empty, so here is another try");
+                    this.selectCharacter(input);
+                }else{
+                    this.currentHero = new Heroes(heroesClass[i - 1], temp);
+                }
+            }
+            System.out.println("Your hero's name is " + this.currentHero.getName() + " and his class is " + this.getCurrentHero().getHeroClass());
         }else{
             System.out.println("Input invalid , closing game");
             this.exitGame();
@@ -138,11 +168,11 @@ public class GameGen{
 
     public void startGame(){
         System.out.println("Would you like to start a game (Y/N) ?");
-        temp = ReadWrite.inp.nextLine().trim().toLowerCase();
-        if (!(temp == "no") || !(temp == "n")){
+        String temp = ReadWrite.inp.nextLine().trim().toLowerCase();
+        if (temp.matches("no")|| temp.matches("no")){
             this.exitGame();
             return ;
-        }else if ((!(temp == "yes") || !(temp == "y"))){
+        }else if (temp.matches("yes")|| temp.matches("y")){
             clearScreen();
             System.out.println("Then lets begin the game !!");
         }else{
@@ -150,7 +180,7 @@ public class GameGen{
             this.exitGame();
             return;
         }
-        System.out.println("Would you like to load or create a character (1 to load / 2 to save) ?");
+        System.out.println("Would you like to load or create a character (1 to load / 2 to create ) ?");
         this.selectCharacter(ReadWrite.inp.nextLine().trim().toLowerCase());
     }
 }

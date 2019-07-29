@@ -35,6 +35,6 @@ public class Console {
             temp0[i] = fileContents[i].split(" ");
         }
         Heroes.HeroesGen(temp0);
-        Console.exitGame();
+        Console.startGame();
     }
 }
