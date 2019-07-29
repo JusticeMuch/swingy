@@ -117,7 +117,6 @@ public class GameGen{
     }
 
     public void selectCharacter(String input){
-        String temp = null;
         String [] heroesClass = {"wizard", "shieldMaiden", "swordsman", "adventurer"};
         int i = -1;
         if (input.matches("1")){
@@ -137,20 +136,21 @@ public class GameGen{
             }
             System.out.println("Your hero's name is " + this.currentHero.getName() + " and his class is " + this.getCurrentHero().getHeroClass());
         }else if (input.matches("2")){
-            clearScreen();
+            //clearScreen();
             System.out.println("Please select one of the classes by selecting the corresponding index");
             System.out.println("1. Wizard");
             System.out.println("2. Shield Maiden");
             System.out.println("3. Swordsman");
             System.out.println("4. Adventurer");
             i = ReadWrite.inp.nextInt();
-            if (i < 1 && i > 4 ){
-                clearScreen();
-                System.out.println("Please note that your input is out of bounds, so here is another try");
+            if (i < 1 || i > 4 ){
+                //clearScreen();
+                System.out.println("Please note that your input is out of bounds, so here is another try "+ i);
                 this.selectCharacter(input);
             }else{
                 System.out.println("Please give your hero a name");
-                temp = ReadWrite.inp.nextLine().trim();
+                
+                String temp = ReadWrite.inp.nextLine().trim();
                 if (temp.matches("")){
                     System.out.println("Please note that your input is empty, so here is another try");
                     this.selectCharacter(input);
