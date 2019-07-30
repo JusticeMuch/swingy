@@ -119,6 +119,7 @@ public class GameGen{
     public void selectCharacter(String input){
         String [] heroesClass = {"wizard", "shieldMaiden", "swordsman", "adventurer"};
         int i = -1;
+        String temp = "default";
         if (input.matches("1")){
             System.out.println("Here are your options : ");
             
@@ -136,27 +137,21 @@ public class GameGen{
             }
             System.out.println("Your hero's name is " + this.currentHero.getName() + " and his class is " + this.getCurrentHero().getHeroClass());
         }else if (input.matches("2")){
-            //clearScreen();
+            System.out.println("Please give your hero a name");
+            temp = ReadWrite.inp.nextLine().trim();
+            System.out.println();
             System.out.println("Please select one of the classes by selecting the corresponding index");
             System.out.println("1. Wizard");
             System.out.println("2. Shield Maiden");
             System.out.println("3. Swordsman");
             System.out.println("4. Adventurer");
             i = ReadWrite.inp.nextInt();
-            if (i < 1 || i > 4 ){
-                //clearScreen();
-                System.out.println("Please note that your input is out of bounds, so here is another try "+ i);
+            if (i < 1 || i > 4 || temp.length() < 1){
+                clearScreen();
+                System.out.println("Please note that your input is incorrect, so here is another try ");
                 this.selectCharacter(input);
             }else{
-                System.out.println("Please give your hero a name");
-                
-                String temp = ReadWrite.inp.nextLine().trim();
-                if (temp.matches("")){
-                    System.out.println("Please note that your input is empty, so here is another try");
-                    this.selectCharacter(input);
-                }else{
-                    this.currentHero = new Heroes(heroesClass[i - 1], temp);
-                }
+                this.currentHero = new Heroes(heroesClass[i - 1], temp);
             }
             System.out.println("Your hero's name is " + this.currentHero.getName() + " and his class is " + this.getCurrentHero().getHeroClass());
         }else{
