@@ -177,6 +177,11 @@ public class GameGen{
         }
         System.out.println("Would you like to load or create a character (1 to load / 2 to create ) ?");
         this.selectCharacter(ReadWrite.inp.nextLine().trim().toLowerCase());
+
+    }
+
+    public void game(){
+
     }
 }
 
