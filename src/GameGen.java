@@ -130,6 +130,17 @@ public class GameGen{
         }
     }
 
+
+    public void EnemyVersus(Enemy enemy){
+        System.out.println("Do you wanna fight or run, if you run, there's a 50% chance you'll survive ??");
+        System.out.println("Select 1 to fight, 2 to run");
+        String input = ReadWrite.inp.nextLine().trim();
+        while (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() > 0){
+            if (input.matches("1")){
+                
+            }
+        }
+    }
     public Enemy generateEnemy(int level){
         Random rand = new Random();
         String [] choices = {"Ork", "Wizard", "Elf", "Mud Monster", "Itachi", "Jiraiya", "Marshall D. Teach"};
