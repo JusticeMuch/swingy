@@ -141,9 +141,13 @@ public class GameGen{
                 if (enemy.getEnemyHealth() <= 0){
                     System.out.println("The enemy is dead, carry on with your game, your remaining life left is "+ this.currentHero.getHitPoints());
                 }else{
-                    this.currentHero.setHitPoints(this.currentHero.getHitPoints() - enemy.getEnemyAttack());
+                    int enemyAttack = enemy.getEnemyAttack() - this.currentHero.getDefense();
+                    enemyAttack = enemyAttack > 0 ? enemyAttack : 0;
+                    this.currentHero.setHitPoints(this.currentHero.getHitPoints() - enemyAttack);
                     if (this.currentHero.getHitPoints() <= 0){
-                        this.currentHero.setHitPoints(100);
+                        this.currentHero.setHitPoints(50 * this.currentHero.getLevel());
+                        System.out.println("You died in battle, Your name will shouted at the dinner halls in Valhalla !!!!");
+                        this.exitGame();
                     }
                 }
             }
@@ -254,6 +258,7 @@ public class GameGen{
 
     public void game(){
         System.out.println("You can only start by level one in this game !!!");
+        
 
     }
 }
