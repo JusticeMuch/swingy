@@ -137,7 +137,15 @@ public class GameGen{
         String input = ReadWrite.inp.nextLine().trim();
         while (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() > 0){
             if (input.matches("1")){
-                
+                enemy.setEnemyHealth(enemy.getEnemyHealth() - this.currentHero.getAttack());
+                if (enemy.getEnemyHealth() <= 0){
+                    System.out.println("The enemy is dead, carry on with your game, your remaining life left is "+ this.currentHero.getHitPoints());
+                }else{
+                    this.currentHero.setHitPoints(this.currentHero.getHitPoints() - enemy.getEnemyAttack());
+                    if (this.currentHero.getHitPoints() <= 0){
+                        this.currentHero.setHitPoints(100);
+                    }
+                }
             }
         }
     }
