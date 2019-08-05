@@ -16,6 +16,7 @@ public class GameGen{
     private Heroes currentHero;
     private int[][] grid;
     String temp;
+    private int[] curentPosition;
 
 
     public static void clearScreen() {  
@@ -25,6 +26,15 @@ public class GameGen{
 
     public int[][] getGrid(){
         return this.grid;
+    }
+
+    public int[] getCurrentPosition(){
+        return this.curentPosition;
+    }
+
+    public void setCurrentPosition(int x, int y){
+         this.curentPosition[0] = x;
+         this.curentPosition[1] = y;
     }
 
     public void setLevelGrid(int level){
@@ -71,13 +81,33 @@ public class GameGen{
        char c = move.toCharArray()[0];
        switch (c){
            case 'n':
-            
+                if (this.curentPosition[1] + 1 > this.grid.length){
+                    System.out.println("Sorry you can't move any further North, Jon  Snow!!");
+                }else{
+                    this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] + 1);
+                    System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                }
            case 'e':
-
+                if (this.curentPosition[0] + 1 > this.grid.length){
+                    System.out.println("Sorry you can't move any further East, Alladin!!");
+                }else{
+                    this.setCurrentPosition(this.curentPosition[0] + 1, this.curentPosition[1]);
+                    System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                }
            case 's':
-
+                if (this.curentPosition[1] - 1 < 0){
+                    System.out.println("Sorry you can't move any further South, Sansa!!");
+                }else{
+                    this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] - 1);
+                    System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                }
            case 'w':
-
+                if (this.curentPosition[0] - 1 < 0){
+                    System.out.println("Sorry you can't move any further West, Lannister!!");
+                }else{
+                    this.setCurrentPosition(this.curentPosition[0] - 1, this.curentPosition[1]);
+                    System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                }
            default:
                 System.out.println("Please input a direction or the letter beggining");
        }
