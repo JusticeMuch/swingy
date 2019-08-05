@@ -17,6 +17,7 @@ public class GameGen{
     private int[][] grid;
     String temp;
 
+
     public static void clearScreen() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
@@ -41,25 +42,47 @@ public class GameGen{
     public void setEnemiesArtefacts(int level){
         Random rand = new Random();
         level = (level - 1) * 5 + 10 - (level % 2);
-        int enemies = (level * level) / 10;
+        int enemies = (level * level) / 3;
+        int artefacts = (level * level) / 10;
         int j = rand.nextInt(level);
         int k = rand.nextInt(level);
-        for (int i = 0; i < enemies; i++){
+        for (int i = 0; i < artefacts; i++){
             while (this.grid[j][k] != 1){
                 j = rand.nextInt(level);
                 k = rand.nextInt(level);
             }
             this.grid[j][k] = 2;
-            if (i % 10 == 0){
-                while (this.grid[j][k] != 1){
-                    j = rand.nextInt(level);
-                    k = rand.nextInt(level);
-                }
-                this.grid[j][k] = 3;
+        }
+        for (int i = 0; i < enemies; i++){
+            while (this.grid[j][k] != 1){
+                j = rand.nextInt(level);
+                k = rand.nextInt(level);
             }
+            this.grid[j][k] = 3;
         }
     }
 
+
+    public void move(String move){
+        if (move.isBlank()){
+            System.out.println("Please dont shoot blanks");
+        }
+       move = move.toLowerCase().trim();
+       char c = move.toCharArray()[0];
+       switch (c){
+           case 'n':
+            
+           case 'e':
+
+           case 's':
+
+           case 'w':
+
+           default:
+                System.out.println("Please input a direction or the letter beggining");
+       }
+
+    }
     public void generateArtefact(int level){
 
         Random rand =  new Random();
@@ -181,6 +204,7 @@ public class GameGen{
     }
 
     public void game(){
+        System.out.println("You can only start by level one in this game !!!");
 
     }
 }
