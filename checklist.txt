@@ -1,6 +1,0 @@
-create function to start game - select to load or create a character
-game initialize fucntion levelGen
-movement generator 
-in game functions 
-menu 
-GUI

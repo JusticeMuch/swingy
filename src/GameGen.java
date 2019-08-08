@@ -12,7 +12,7 @@ import src.*;
 public class GameGen{
     
     static public ArrayList <Heroes> heroList =  new ArrayList <Heroes>();
-    public static int level;
+    private int level;
     private Heroes currentHero;
     private int[][] grid;
     String temp;
@@ -26,6 +26,14 @@ public class GameGen{
 
     public int[][] getGrid(){
         return this.grid;
+    }
+
+    public int getLevel(){
+        return this.level;
+    }
+
+    public void setLevel(int level){
+        this.level = level;
     }
 
     public int[] getCurrentPosition(){
@@ -73,7 +81,7 @@ public class GameGen{
     }
 
 
-    public void move(String move){
+    public boolean move(String move){
         if (move.isBlank()){
             System.out.println("Please dont shoot blanks");
         }
@@ -83,33 +91,42 @@ public class GameGen{
            case 'n':
                 if (this.curentPosition[1] + 1 > this.grid.length){
                     System.out.println("Sorry you can't move any further North, Jon  Snow!!");
+                    return false;
                 }else{
                     this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] + 1);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                    return true;
                 }
            case 'e':
                 if (this.curentPosition[0] + 1 > this.grid.length){
                     System.out.println("Sorry you can't move any further East, Alladin!!");
+                    return false;
                 }else{
                     this.setCurrentPosition(this.curentPosition[0] + 1, this.curentPosition[1]);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                    return true;
                 }
            case 's':
                 if (this.curentPosition[1] - 1 < 0){
                     System.out.println("Sorry you can't move any further South, Sansa!!");
+                    return false;
                 }else{
                     this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] - 1);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                    return true;
                 }
            case 'w':
                 if (this.curentPosition[0] - 1 < 0){
                     System.out.println("Sorry you can't move any further West, Lannister!!");
+                    return false;
                 }else{
                     this.setCurrentPosition(this.curentPosition[0] - 1, this.curentPosition[1]);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                    return true;
                 }
            default:
                 System.out.println("Please input a direction or the letter beggining");
+                return false;
        }
 
     }
@@ -167,6 +184,15 @@ public class GameGen{
         this.currentHero = current;
     }
 
+    public boolean getGameStatus(){
+        for (int i = 0; i < this.getGrid().length; i++){
+            if (this.getGrid()[this.getGrid().length - 1][i] == 5)
+                return true;
+            else if (this.getGrid()[0][i] == 5)
+                return true;
+        }
+        return false;
+    }
 
     public void exitGame(){
         
@@ -258,8 +284,25 @@ public class GameGen{
 
     public void game(){
         System.out.println("You can only start by level one in this game !!!");
-        
-
+        this.setLevel(1);
+        while (true){
+            while (this.getLevel() != 8){
+                System.out.println("You will now be starting level " + this.getLevel() + " Good luck , may the odds be ever in your favor!!");
+                this.setLevelGrid(this.getLevel());
+                this.setCurrentPosition(this.getGrid().length/2, this.getGrid().length/2);
+                while (this.getGameStatus() == false){
+                    System.out.println("You are currently at position at " + this.getCurrentPosition()[0] + "," + this.getCurrentPosition()[1] + " on a board that is " 
+                    +this.getGrid().length + " x " + this.getGrid().length);
+                    System.out.println();
+                    System.out.println("Please enter a direction or the first letter of that direction that you would like to go");
+                    System.out.println("(s) South, (e) East, (n) North, (W) West");
+                    while (this.move(ReadWrite.inp.nextLine()) != true){
+                        clearScreen();
+                    }
+                     
+                }
+            }
+        }
     }
 }
 
