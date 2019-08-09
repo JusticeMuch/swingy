@@ -45,8 +45,9 @@ public class GameGen{
     }
 
     public void setCurrentPosition(int x, int y){
-         this.curentPosition[0] = x;
-         this.curentPosition[1] = y;
+        this.curentPosition = new int [2];
+        this.curentPosition[0] = x;
+        this.curentPosition[1] = y;
     }
 
     public void setLevelGrid(int level){
@@ -88,6 +89,7 @@ public class GameGen{
     public boolean move(String move){
         if (move.isBlank()){
             System.out.println("Please dont shoot blanks");
+            return false;
         }
        move = move.toLowerCase().trim();
        char c = move.toCharArray()[0];
@@ -301,6 +303,7 @@ public class GameGen{
                 System.out.println("You will now be starting level " + this.getLevel() + " Good luck , may the odds be ever in your favor!!");
                 this.setLevelGrid(this.getLevel());
                 this.setCurrentPosition(this.getGrid().length/2, this.getGrid().length/2);
+                System.out.println("Current position working");
                 while (this.getGameStatus() == false){
                     System.out.println("You are currently at position at " + this.getCurrentPosition()[0] + "," + this.getCurrentPosition()[1] + " on a board that is " 
                     +this.getGrid().length + " x " + this.getGrid().length);
@@ -316,7 +319,7 @@ public class GameGen{
                             System.out.println("Nothing happening here !!");
                         case 2:
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
-
+                            this.EnemyVersus(this.generateEnemy(this.getLevel()));
                         case 3:
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             System.out.println("New Artefacts !!");

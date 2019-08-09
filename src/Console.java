@@ -36,5 +36,6 @@ public class Console {
         }
         Heroes.HeroesGen(temp0);
         Console.startGame();
+        Console.game();
     }
 }
