@@ -93,6 +93,9 @@ public class GameGen{
         }
        move = move.toLowerCase().trim();
        char c = move.toCharArray()[0];
+       if (move == null){
+        return false;
+       }
        switch (c){
            case 'n':
                 if (this.curentPosition[1] + 1 > this.grid.length){
@@ -310,14 +313,16 @@ public class GameGen{
                     System.out.println();
                     System.out.println("Please enter a direction or the first letter of that direction that you would like to go");
                     System.out.println("(s) South, (e) East, (n) North, (W) West");
-                    while (this.move(ReadWrite.inp.nextLine()) != true){
+                    for  (String temp = "s"; this.move(temp) != true;temp = ReadWrite.inp.nextLine()){
                         clearScreen();
                     }
                     switch(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]){
                         case 1:
+                            System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             System.out.println("Nothing happening here !!");
                         case 2:
+                            System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             this.EnemyVersus(this.generateEnemy(this.getLevel()));
                         case 3:
