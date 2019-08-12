@@ -323,6 +323,8 @@ public class GameGen{
                             System.out.println("Nothing happening here !!");
                         case 2:
                             System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
+                            System.out.println("You are currently at position at " + this.getCurrentPosition()[0] + "," + this.getCurrentPosition()[1] + " on a board that is " 
+                            +this.getGrid().length + " x " + this.getGrid().length);
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             this.EnemyVersus(this.generateEnemy(this.getLevel()));
                         case 3:
