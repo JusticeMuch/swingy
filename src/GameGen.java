@@ -94,11 +94,12 @@ public class GameGen{
         System.out.println("(s) South, (e) East, (n) North, (W) West");
         String move = ReadWrite.inp.nextLine();
        move = move.toLowerCase().trim();
-       char c = move.toCharArray()[0];
-       if (c == ){
+       if (move.length() < 1){
            clearScreen();
            this.move();
        }
+       char c = move.toCharArray()[0];
+       
        switch (c){
            case 'n':
                 if (this.curentPosition[1] + 1 > this.grid.length){
@@ -134,7 +135,6 @@ public class GameGen{
                 }
            default:
                 System.out.println("Please input a direction or the letter beggining");
-                return false;
        }
 
     }
