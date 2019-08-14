@@ -86,56 +86,51 @@ public class GameGen{
     }
 
 
-    public boolean move(String move){
-        if (move.isBlank()){
-            System.out.println("Please dont shoot blanks");
-            return false;
-        }
+    public void move(){   // work on function
+        System.out.println("You are currently at position at " + this.getCurrentPosition()[0] + "," + this.getCurrentPosition()[1] + " on a board that is " 
+                     +this.getGrid().length + " x " + this.getGrid().length);
+        System.out.println();
+        System.out.println("Please enter a direction or the first letter of that direction that you would like to go");
+        System.out.println("(s) South, (e) East, (n) North, (W) West");
+        String move = ReadWrite.inp.nextLine();
        move = move.toLowerCase().trim();
        char c = move.toCharArray()[0];
-       if (move == null){
-        return false;
+       if (c == ){
+           clearScreen();
+           this.move();
        }
        switch (c){
            case 'n':
                 if (this.curentPosition[1] + 1 > this.grid.length){
                     System.out.println("Sorry you can't move any further North, Jon  Snow!!");
-                    return false;
                 }else{
                     this.setGridBlock(this.curentPosition[0], this.curentPosition[1], 4);
                     this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] + 1);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
-                    return true;
                 }
            case 'e':
                 if (this.curentPosition[0] + 1 > this.grid.length){
                     System.out.println("Sorry you can't move any further East, Alladin!!");
-                    return false;
                 }else{
                     this.setGridBlock(this.curentPosition[0], this.curentPosition[1], 4);
                     this.setCurrentPosition(this.curentPosition[0] + 1, this.curentPosition[1]);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
-                    return true;
                 }
            case 's':
                 if (this.curentPosition[1] - 1 < 0){
                     System.out.println("Sorry you can't move any further South, Sansa!!");
-                    return false;
                 }else{
                     this.setGridBlock(this.curentPosition[0], this.curentPosition[1], 4);
                     this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] - 1);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
-                    return true;
                 }
            case 'w':
                 if (this.curentPosition[0] - 1 < 0){
                     System.out.println("Sorry you can't move any further West, Lannister!!");
-                    return false;
                 }else{
                     this.setGridBlock(this.curentPosition[0], this.curentPosition[1], 4);
                     this.setCurrentPosition(this.curentPosition[0] - 1, this.curentPosition[1]);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
-                    return true;
                 }
            default:
                 System.out.println("Please input a direction or the letter beggining");
@@ -308,14 +303,7 @@ public class GameGen{
                 this.setCurrentPosition(this.getGrid().length/2, this.getGrid().length/2);
                 System.out.println("Current position working");
                 while (this.getGameStatus() == false){
-                    System.out.println("You are currently at position at " + this.getCurrentPosition()[0] + "," + this.getCurrentPosition()[1] + " on a board that is " 
-                    +this.getGrid().length + " x " + this.getGrid().length);
-                    System.out.println();
-                    System.out.println("Please enter a direction or the first letter of that direction that you would like to go");
-                    System.out.println("(s) South, (e) East, (n) North, (W) West");
-                    for  (String temp = "s"; this.move(temp) != true;temp = ReadWrite.inp.nextLine()){
-                        clearScreen();
-                    }
+                    this.move();
                     switch(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]){
                         case 1:
                             System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
@@ -341,6 +329,7 @@ public class GameGen{
                 }
             }
         }
+        
     }
 }
 
