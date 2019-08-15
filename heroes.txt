@@ -2,3 +2,4 @@ name1 class1 1 2 3 armor_name1 4 helm_name1 5 weapon_name1 6 7 8
 name2 class2 1 2 3 armor_name2 4 helm_name2 5 weapon_name2 6 7 8 
 name3 class3 1 2 3 armor_name3 4 helm_name3 5 weapon_name3 6 7 8 
 name4 class4 1 2 3 armor_name4 4 helm_name4 5 weapon_name4 6 7 8 
+dfgdfg shieldMaiden 10 10 50 default_shieldMaiden_armor 10 default_shieldMaiden_helm 5 default_shieldMaiden_weapon 75 0 0 

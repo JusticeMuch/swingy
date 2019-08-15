@@ -155,17 +155,17 @@ public class GameGen{
 
         switch (choice) {
             case 0:
-                this.currentHero.setWeapon(new Weapon("Level " + level + " " + this.currentHero.getHeroClass() + " weapon", 20 * level));
+                this.currentHero.setWeapon(new Weapon("Level_" + level + "_" + this.currentHero.getHeroClass() + "_weapon", 20 * level));
                 System.out.println(this.getCurrentHero().getWeapon());
                 break;
 
             case 1:
-                this.currentHero.setHelm(new Helm("Level " + level + " " + this.currentHero.getHeroClass() + " helm", 20 * level));
+                this.currentHero.setHelm(new Helm("Level_" + level + "_" + this.currentHero.getHeroClass() + "_helm", 20 * level));
                 System.out.println(this.getCurrentHero().getHelm());
                 break;
 
             case 2:
-                this.currentHero.setArmor(new Armor("Level " + level + " " + this.currentHero.getHeroClass() + " armor", 20 * level));
+                this.currentHero.setArmor(new Armor("Level_" + level + "_" + this.currentHero.getHeroClass() + "_armor", 20 * level));
                 System.out.println(this.getCurrentHero().getArmor());
                 break;
 
@@ -213,16 +213,17 @@ public class GameGen{
 
     public boolean getGameStatus(){
         for (int i = 0; i < this.getGrid().length; i++){
-            if (this.getGrid()[this.getGrid().length - 1][i] == 5)
+            if (this.getGrid()[i][this.getGrid().length - 1] == 5)
                 return true;
-            else if (this.getGrid()[0][i] == 5)
+            else if (this.getGrid()[i][0] == 5)
                 return true;
         }
         return false;
     }
 
     public void exitGame(){
-        
+        if (this.currentHero != null)
+            GameGen.heroList.add(this.currentHero);
         try {
             ReadWrite.reader.close();
         } catch (IOException e) {
@@ -243,6 +244,7 @@ public class GameGen{
         }
         ReadWrite.inp.close();
         ReadWrite.writer.close();
+        System.exit(0);
     }
 
     public void selectCharacter(String input){
@@ -319,7 +321,6 @@ public class GameGen{
                 this.setCurrentPosition(this.getGrid().length/2, this.getGrid().length/2);
                 while (this.getGameStatus() == false){
                     this.move();
-                    System.out.println("This fucking error !!!!");
                     System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
                     switch(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]){
                         case 1:
@@ -340,6 +341,7 @@ public class GameGen{
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             System.out.println("New Artefacts !!");
                             this.generateArtefact(this.getLevel());
+                            
                             break;
 
                         case 4:
@@ -356,6 +358,10 @@ public class GameGen{
                     }
                      
                 }
+                (this.level)++;
+            }
+            if (this.level == 8){
+                this.exitGame();
             }
         }
         

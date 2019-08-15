@@ -127,9 +127,9 @@ public class Heroes{
         heroClass.put("swordsman", details[2]);
         heroClass.put("adventurer", details[3]);
 
-        Helm helm = new Helm("default " + heroType + " helm",Integer.parseInt(heroClass.get(heroType)[0]));
-        Armor armor = new Armor("default " + heroType + " armor", Integer.parseInt(heroClass.get(heroType)[1]));
-        Weapon weapon = new Weapon("default " + heroType + " weapon", Integer.parseInt(heroClass.get(heroType)[2]));
+        Helm helm = new Helm("default_" + heroType + "_helm",Integer.parseInt(heroClass.get(heroType)[0]));
+        Armor armor = new Armor("default_" + heroType + "_armor", Integer.parseInt(heroClass.get(heroType)[1]));
+        Weapon weapon = new Weapon("default_" + heroType + "_weapon", Integer.parseInt(heroClass.get(heroType)[2]));
         this.setName(heroName);
         this.setHeroClass(heroType);
         this.setLevel(0);
