@@ -97,9 +97,11 @@ public class GameGen{
        if (move.length() < 1){
            clearScreen();
            this.move();
+           return ;
        }
+       System.out.println(move);
+       //System.out.println(move.toCharArray().length);
        char c = move.toCharArray()[0];
-       
        switch (c){
            case 'n':
                 if (this.curentPosition[1] + 1 > this.grid.length){
@@ -109,6 +111,8 @@ public class GameGen{
                     this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] + 1);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
                 }
+                break;
+
            case 'e':
                 if (this.curentPosition[0] + 1 > this.grid.length){
                     System.out.println("Sorry you can't move any further East, Alladin!!");
@@ -117,6 +121,8 @@ public class GameGen{
                     this.setCurrentPosition(this.curentPosition[0] + 1, this.curentPosition[1]);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
                 }
+                break;
+
            case 's':
                 if (this.curentPosition[1] - 1 < 0){
                     System.out.println("Sorry you can't move any further South, Sansa!!");
@@ -125,6 +131,8 @@ public class GameGen{
                     this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] - 1);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
                 }
+                break;
+
            case 'w':
                 if (this.curentPosition[0] - 1 < 0){
                     System.out.println("Sorry you can't move any further West, Lannister!!");
@@ -133,6 +141,8 @@ public class GameGen{
                     this.setCurrentPosition(this.curentPosition[0] - 1, this.curentPosition[1]);
                     System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
                 }
+                break;
+
            default:
                 System.out.println("Please input a direction or the letter beggining");
        }
@@ -147,12 +157,18 @@ public class GameGen{
             case 0:
                 this.currentHero.setWeapon(new Weapon("Level " + level + " " + this.currentHero.getHeroClass() + " weapon", 20 * level));
                 System.out.println(this.getCurrentHero().getWeapon());
+                break;
+
             case 1:
                 this.currentHero.setHelm(new Helm("Level " + level + " " + this.currentHero.getHeroClass() + " helm", 20 * level));
                 System.out.println(this.getCurrentHero().getHelm());
+                break;
+
             case 2:
                 this.currentHero.setArmor(new Armor("Level " + level + " " + this.currentHero.getHeroClass() + " armor", 20 * level));
                 System.out.println(this.getCurrentHero().getArmor());
+                break;
+
             default:
                 System.out.println("Error");
         }
@@ -301,29 +317,42 @@ public class GameGen{
                 System.out.println("You will now be starting level " + this.getLevel() + " Good luck , may the odds be ever in your favor!!");
                 this.setLevelGrid(this.getLevel());
                 this.setCurrentPosition(this.getGrid().length/2, this.getGrid().length/2);
-                System.out.println("Current position working");
                 while (this.getGameStatus() == false){
                     this.move();
+                    System.out.println("This fucking error !!!!");
+                    System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
                     switch(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]){
                         case 1:
                             System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             System.out.println("Nothing happening here !!");
+                            break;
+
                         case 2:
                             System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
                             System.out.println("You are currently at position at " + this.getCurrentPosition()[0] + "," + this.getCurrentPosition()[1] + " on a board that is " 
                             +this.getGrid().length + " x " + this.getGrid().length);
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             this.EnemyVersus(this.generateEnemy(this.getLevel()));
+                            break;
+
                         case 3:
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             System.out.println("New Artefacts !!");
                             this.generateArtefact(this.getLevel());
+                            break;
+
                         case 4:
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             System.out.println("You were here previously , but ok !!!");
+                            break;
+
                         case 5:
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
+                            break;
+
+                        default:
+                            System.out.println("There is a error in the grid");
                     }
                      
                 }
