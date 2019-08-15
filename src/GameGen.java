@@ -19,6 +19,16 @@ public class GameGen{
     private int[] curentPosition;
 
 
+    public void printGrid(){
+        System.out.println();
+        for (int i = 0; i < this.getGrid().length; i++){
+            for (int j = 0; j < this.getGrid().length; j++){
+                System.out.print(this.getGrid()[j][i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void clearScreen() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
@@ -318,7 +328,9 @@ public class GameGen{
             while (this.getLevel() != 8){
                 System.out.println("You will now be starting level " + this.getLevel() + " Good luck , may the odds be ever in your favor!!");
                 this.setLevelGrid(this.getLevel());
+                this.setEnemiesArtefacts(this.getLevel());
                 this.setCurrentPosition(this.getGrid().length/2, this.getGrid().length/2);
+                this.printGrid();
                 while (this.getGameStatus() == false){
                     this.move();
                     System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
