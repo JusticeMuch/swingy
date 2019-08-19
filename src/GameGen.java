@@ -184,11 +184,11 @@ public class GameGen{
     }
 
 
-    public void EnemyVersus(Enemy enemy){
+    public void EnemyVersus(Enemy enemy){ // complete function 
         System.out.println("Do you wanna fight or run, if you run, there's a 50% chance you'll survive ??");
         System.out.println("Select 1 to fight, 2 to run");
-        String input = ReadWrite.inp.nextLine().trim();
         while (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() > 0){
+            String input = ReadWrite.inp.nextLine().trim();
             if (input.matches("1")){
                 enemy.setEnemyHealth(enemy.getEnemyHealth() - this.currentHero.getAttack());
                 if (enemy.getEnemyHealth() <= 0){
@@ -206,6 +206,8 @@ public class GameGen{
             }
         }
     }
+
+
     public Enemy generateEnemy(int level){
         Random rand = new Random();
         String [] choices = {"Ork", "Wizard", "Elf", "Mud Monster", "Itachi", "Jiraiya", "Marshall D. Teach"};
@@ -231,7 +233,7 @@ public class GameGen{
     }
 
     public void exitGame(){
-        if (this.currentHero != null)
+        if (this.currentHero != null  && !(GameGen.heroList.contains(this.currentHero)))
             GameGen.heroList.add(this.currentHero);
         try {
             ReadWrite.reader.close();
@@ -325,6 +327,7 @@ public class GameGen{
         this.setLevel(1);
         while (true){
             while (this.getLevel() != 8){
+                clearScreen();
                 System.out.println("You will now be starting level " + this.getLevel() + " Good luck , may the odds be ever in your favor!!");
                 this.setLevelGrid(this.getLevel());
                 this.setEnemiesArtefacts(this.getLevel());
@@ -332,18 +335,13 @@ public class GameGen{
                 // this.printGrid();
                 while (this.getGameStatus() == false){
                     this.move();
-                    System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
                     switch(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]){
                         case 1:
-                            System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             System.out.println("Nothing happening here !!");
                             break;
 
                         case 2:
-                            System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
-                            System.out.println("You are currently at position at " + this.getCurrentPosition()[0] + "," + this.getCurrentPosition()[1] + " on a board that is " 
-                            +this.getGrid().length + " x " + this.getGrid().length);
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             this.EnemyVersus(this.generateEnemy(this.getLevel()));
                             break;
