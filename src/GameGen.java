@@ -18,7 +18,6 @@ public class GameGen{
     String temp;
     private int[] curentPosition;
 
-
     public void printGrid(){
         System.out.println();
         for (int i = 0; i < this.getGrid().length; i++){
@@ -166,17 +165,17 @@ public class GameGen{
         switch (choice) {
             case 0:
                 this.currentHero.setWeapon(new Weapon("Level_" + level + "_" + this.currentHero.getHeroClass() + "_weapon", 20 * level));
-                System.out.println(this.getCurrentHero().getWeapon());
+                System.out.println(this.getCurrentHero().getWeapon().getWeaponName());
                 break;
 
             case 1:
                 this.currentHero.setHelm(new Helm("Level_" + level + "_" + this.currentHero.getHeroClass() + "_helm", 20 * level));
-                System.out.println(this.getCurrentHero().getHelm());
+                System.out.println(this.getCurrentHero().getHelm().getHelmName());
                 break;
 
             case 2:
                 this.currentHero.setArmor(new Armor("Level_" + level + "_" + this.currentHero.getHeroClass() + "_armor", 20 * level));
-                System.out.println(this.getCurrentHero().getArmor());
+                System.out.println(this.getCurrentHero().getArmor().getArmorName());
                 break;
 
             default:
@@ -330,7 +329,7 @@ public class GameGen{
                 this.setLevelGrid(this.getLevel());
                 this.setEnemiesArtefacts(this.getLevel());
                 this.setCurrentPosition(this.getGrid().length/2, this.getGrid().length/2);
-                this.printGrid();
+                // this.printGrid();
                 while (this.getGameStatus() == false){
                     this.move();
                     System.out.println(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]);
@@ -353,7 +352,6 @@ public class GameGen{
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
                             System.out.println("New Artefacts !!");
                             this.generateArtefact(this.getLevel());
-                            
                             break;
 
                         case 4:
