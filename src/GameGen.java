@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
+
 import src.*;
 
 public class GameGen{
@@ -191,11 +192,48 @@ public class GameGen{
         }
     }
 
+    public int runOrFight(Enemy enemy){
 
-    public void EnemyVersus(Enemy enemy){ // complete function 
-        
+        Random rand = new Random();
+        int number = 0;
+        int attack = this.currentHero.getAttack() + this.currentHero.getWeapon().getAddedAttack();
+        int enemyAttack = this.currentHero.getDefense() + this.getCurrentHero().getArmor().getAddedDefense() - enemy.getEnemyAttack();
+
+        System.out.println("Your enemy's name is " + enemy.getEnemyName() + " and he has "+ enemy.getEnemyHealth() +"hp and " + enemy.getEnemyAttack() + " attack points");
+        System.out.println("Your currently have "+ this.currentHero.getHitPoints() +"hp and your attack is worth is " + attack);
+        do {
+            System.out.println("You have to now choose to fight(1) or run(2) !!");
+            while (!ReadWrite.inp.hasNextInt()) {
+                System.out.println("That's not a 1 or 2!");
+                ReadWrite.inp.next();
+            }
+            number = ReadWrite.inp.nextInt();
+        } while (number != 1 && number != 2);
+        if (number == 2){
+            if (rand.nextInt(2) == 0){
+                System.out.println("You made it out alive, you're a good runner !!!");
+                return (1);
+            }else{
+                System.out.println("Get ready for a fight, the enemy catches up to you, slowpoke !!!!");
+            }
+        }
+        enemy.setEnemyHealth(enemy.getEnemyHealth() - attack);
+        if (enemy.getEnemyHealth() > 0 && enemyAttack < 0){
+            this.currentHero.setHitPoints(this.currentHero.getHitPoints() - enemyAttack);
+        }
+
+        if (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() <= 0){
+            System.out.println("You survived , well done");
+            return (1);
+        }else if (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() > 0){
+            System.out.println("Your enemy survives, survive, I dare you !!!!");
+            System.out.println();
+            return this.runOrFight(enemy);
+        }else{
+            System.out.println("You died");
+            return (2);
+        }
     }
-
 
     public Enemy generateEnemy(int level){
         Random rand = new Random();
@@ -330,6 +368,7 @@ public class GameGen{
                 // this.printGrid();
                 while (this.getGameStatus() == false){
                     this.move();
+                    System.out.println();
                     switch(this.getGrid()[this.getCurrentPosition()[0]][this.getCurrentPosition()[1]]){
                         case 1:
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
@@ -338,7 +377,10 @@ public class GameGen{
 
                         case 2:
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
-                            this.EnemyVersus(this.generateEnemy(this.getLevel()));
+                            clearScreen();
+                            if (this.runOrFight(this.generateEnemy(this.getLevel())) == 2){
+                                this.exitGame();
+                            }
                             break;
 
                         case 3:
