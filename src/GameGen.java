@@ -71,6 +71,14 @@ public class GameGen{
         }
     }
 
+    public void updateExp(){
+        this.currentHero.setLevel(this.level);
+        this.currentHero.setExp(this.currentHero.getExp() + this.level * 1000);
+        this.currentHero.setAttack(this.level * 30);
+        this.currentHero.setDefense(this.level * 30);
+        this.currentHero.setHitPoints(this.level * 75);
+    }
+
     public void setEnemiesArtefacts(int level){
         Random rand = new Random();
         level = (level - 1) * 5 + 10 - (level % 2);
@@ -185,26 +193,7 @@ public class GameGen{
 
 
     public void EnemyVersus(Enemy enemy){ // complete function 
-        System.out.println("Do you wanna fight or run, if you run, there's a 50% chance you'll survive ??");
-        System.out.println("Select 1 to fight, 2 to run");
-        while (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() > 0){
-            String input = ReadWrite.inp.nextLine().trim();
-            if (input.matches("1")){
-                enemy.setEnemyHealth(enemy.getEnemyHealth() - this.currentHero.getAttack());
-                if (enemy.getEnemyHealth() <= 0){
-                    System.out.println("The enemy is dead, carry on with your game, your remaining life left is "+ this.currentHero.getHitPoints());
-                }else{
-                    int enemyAttack = enemy.getEnemyAttack() - this.currentHero.getDefense();
-                    enemyAttack = enemyAttack > 0 ? enemyAttack : 0;
-                    this.currentHero.setHitPoints(this.currentHero.getHitPoints() - enemyAttack);
-                    if (this.currentHero.getHitPoints() <= 0){
-                        this.currentHero.setHitPoints(50 * this.currentHero.getLevel());
-                        System.out.println("You died in battle, Your name will shouted at the dinner halls in Valhalla !!!!");
-                        this.exitGame();
-                    }
-                }
-            }
-        }
+        
     }
 
 
@@ -233,6 +222,12 @@ public class GameGen{
     }
 
     public void exitGame(){
+        if (this.level != 8){
+            System.out.println("Sorry for your loss");
+        }else{
+            System.out.println("Well done on completing the game");
+        }
+
         if (this.currentHero != null  && !(GameGen.heroList.contains(this.currentHero)))
             GameGen.heroList.add(this.currentHero);
         try {
@@ -367,6 +362,7 @@ public class GameGen{
                      
                 }
                 (this.level)++;
+                this.updateExp();
             }
             if (this.level == 8){
                 this.exitGame();
