@@ -34,6 +34,17 @@ public class GameGen{
         System.out.flush();  
     }
 
+    public void sleep(int ms){
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
+
     public int[][] getGrid(){
         return this.grid;
     }
@@ -105,7 +116,7 @@ public class GameGen{
 
 
     public void move(){   // work on function
-        System.out.println("You are currently at position at " + this.getCurrentPosition()[0] + "," + this.getCurrentPosition()[1] + " on a board that is " 
+        System.out.println("You are currently at position at " + (this.getCurrentPosition()[0] + 1) + "," + (this.getCurrentPosition()[1] + 1) + " on a board that is " 
                      +this.getGrid().length + " x " + this.getGrid().length);
         System.out.println();
         System.out.println("Please enter a direction or the first letter of that direction that you would like to go");
@@ -127,7 +138,7 @@ public class GameGen{
                 }else{
                     this.setGridBlock(this.curentPosition[0], this.curentPosition[1], 4);
                     this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] + 1);
-                    System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                    System.out.println("Your current coordinates are "+ (this.getCurrentPosition()[0] + 1) + "," + (this.getCurrentPosition()[1] + 1));
                 }
                 break;
 
@@ -137,7 +148,7 @@ public class GameGen{
                 }else{
                     this.setGridBlock(this.curentPosition[0], this.curentPosition[1], 4);
                     this.setCurrentPosition(this.curentPosition[0] + 1, this.curentPosition[1]);
-                    System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                    System.out.println("Your current coordinates are "+ (this.getCurrentPosition()[0] + 1) + "," + (this.getCurrentPosition()[1] + 1));
                 }
                 break;
 
@@ -147,7 +158,7 @@ public class GameGen{
                 }else{
                     this.setGridBlock(this.curentPosition[0], this.curentPosition[1], 4);
                     this.setCurrentPosition(this.curentPosition[0], this.curentPosition[1] - 1);
-                    System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                    System.out.println("Your current coordinates are "+ (this.getCurrentPosition()[0] + 1) + "," + (this.getCurrentPosition()[1] + 1));
                 }
                 break;
 
@@ -157,7 +168,7 @@ public class GameGen{
                 }else{
                     this.setGridBlock(this.curentPosition[0], this.curentPosition[1], 4);
                     this.setCurrentPosition(this.curentPosition[0] - 1, this.curentPosition[1]);
-                    System.out.println("Your current coordinates are "+ this.curentPosition[0] + ", "+ this.curentPosition[1]);
+                    System.out.println("Your current coordinates are "+ (this.getCurrentPosition()[0] + 1) + "," + (this.getCurrentPosition()[1] + 1));
                 }
                 break;
 
@@ -212,9 +223,12 @@ public class GameGen{
         if (number == 2){
             if (rand.nextInt(2) == 0){
                 System.out.println("You made it out alive, you're a good runner !!!");
+                this.sleep(3000);
                 return (1);
             }else{
                 System.out.println("Get ready for a fight, the enemy catches up to you, slowpoke !!!!");
+                System.out.println("Your enemy's name is " + enemy.getEnemyName() + " and he has "+ enemy.getEnemyHealth() +"hp and " + enemy.getEnemyAttack() + " attack points");
+                System.out.println("Your currently have "+ this.currentHero.getHitPoints() +"hp and your attack is worth is " + attack);
             }
         }
         enemy.setEnemyHealth(enemy.getEnemyHealth() - attack);
@@ -224,13 +238,16 @@ public class GameGen{
 
         if (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() <= 0){
             System.out.println("You survived , well done");
+            this.sleep(3000);
             return (1);
         }else if (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() > 0){
             System.out.println("Your enemy survives, survive, I dare you !!!!");
             System.out.println();
+            this.sleep(3000);
             return this.runOrFight(enemy);
         }else{
             System.out.println("You died");
+            this.sleep(3000);
             return (2);
         }
     }
@@ -238,7 +255,7 @@ public class GameGen{
     public Enemy generateEnemy(int level){
         Random rand = new Random();
         String [] choices = {"Ork", "Wizard", "Elf", "Mud Monster", "Itachi", "Jiraiya", "Marshall D. Teach"};
-        return new Enemy(choices[rand.nextInt(7)], level * 20 , level * 10);
+        return new Enemy(choices[rand.nextInt(7)], level * 50 , level * 25);
     }
 
     public Heroes getCurrentHero(){
@@ -364,8 +381,7 @@ public class GameGen{
                 System.out.println("You will now be starting level " + this.getLevel() + " Good luck , may the odds be ever in your favor!!");
                 this.setLevelGrid(this.getLevel());
                 this.setEnemiesArtefacts(this.getLevel());
-                this.setCurrentPosition(this.getGrid().length/2, this.getGrid().length/2);
-                // this.printGrid();
+                this.setCurrentPosition(this.getGrid().length/2 - 1, this.getGrid().length/2 - 1);
                 while (this.getGameStatus() == false){
                     this.move();
                     System.out.println();
@@ -401,7 +417,7 @@ public class GameGen{
                         default:
                             System.out.println("There is a error in the grid");
                     }
-                     
+                    this.setGridBlock(this.curentPosition[0], this.curentPosition[1], 5);
                 }
                 (this.level)++;
                 this.updateExp();
