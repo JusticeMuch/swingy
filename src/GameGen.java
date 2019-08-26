@@ -233,7 +233,7 @@ public class GameGen{
         }
         enemy.setEnemyHealth(enemy.getEnemyHealth() - attack);
         if (enemy.getEnemyHealth() > 0 && enemyAttack < 0){
-            this.currentHero.setHitPoints(this.currentHero.getHitPoints() - enemyAttack);
+            this.currentHero.setHitPoints(this.currentHero.getHitPoints() + enemyAttack);
         }
 
         if (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() <= 0){
@@ -255,7 +255,7 @@ public class GameGen{
     public Enemy generateEnemy(int level){
         Random rand = new Random();
         String [] choices = {"Ork", "Wizard", "Elf", "Mud Monster", "Itachi", "Jiraiya", "Marshall D. Teach"};
-        return new Enemy(choices[rand.nextInt(7)], level * 50 , level * 25);
+        return new Enemy(choices[rand.nextInt(7)], level * 75 , level * 50);
     }
 
     public Heroes getCurrentHero(){

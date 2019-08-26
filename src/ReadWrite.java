@@ -10,5 +10,4 @@ public class ReadWrite {
     public static Scanner inp;
     public static BufferedReader reader;
     public static File saveFile;
-
 }
