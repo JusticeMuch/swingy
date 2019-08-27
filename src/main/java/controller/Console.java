@@ -16,7 +16,7 @@ public class Console {
         ReadWrite.inp = new Scanner(System.in);
         String[] fileContents = new String[100];
         int counter = -1;
-        ReadWrite.saveFile = new File("heroes.txt");
+        ReadWrite.saveFile = new File("src/main/java/heroes.txt");
         try {
             ReadWrite.saveFile.createNewFile();
         } catch (IOException e1) {
