@@ -238,6 +238,9 @@ public class GameGen{
 
         if (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() <= 0){
             System.out.println("You survived , well done");
+            if (rand.nextInt(2) == 1){
+                this.generateArtefact(this.getLevel());
+            }
             this.sleep(3000);
             return (1);
         }else if (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() > 0){
@@ -401,8 +404,10 @@ public class GameGen{
 
                         case 3:
                             this.setGridBlock(this.getCurrentPosition()[0], this.getCurrentPosition()[1], 5);
-                            System.out.println("New Artefacts !!");
-                            this.generateArtefact(this.getLevel());
+                            clearScreen();
+                            if (this.runOrFight(this.generateEnemy(this.getLevel())) == 2){
+                                this.exitGame();
+                            }
                             break;
 
                         case 4:

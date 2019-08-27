@@ -1,0 +1,8 @@
+./src/main/java/view/ReadWrite.java
+./src/main/java/controller/GameGen.java
+./src/main/java/controller/Console.java
+./src/main/java/model/Helm.java
+./src/main/java/model/Armor.java
+./src/main/java/model/Heroes.java
+./src/main/java/model/Weapon.java
+./src/main/java/model/Enemy.java
