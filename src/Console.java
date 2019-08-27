@@ -1,12 +1,11 @@
 package src;
 
-import src.character.*;
+import model.*;
+import view.*;
+import controller.*;
 
 import java.io.*;
 import java.util.*;
-
-
-import src.*;
 
 public class Console {
 

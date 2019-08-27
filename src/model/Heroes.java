@@ -1,8 +1,8 @@
-package src.character;
+package model;
 
 import java.util.HashMap;
 
-import src.*;
+import controller.*;
 
 public class Heroes{
     

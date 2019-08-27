@@ -1,4 +1,4 @@
-package src.character;
+package model;
 
 public class Helm{
     private String helmName;

@@ -1,5 +1,5 @@
 
-package src;
+package model;
 
 public class Enemy{
     
@@ -7,7 +7,7 @@ public class Enemy{
     private int health;
     private int attack;
 
-    Enemy(String name, int health, int attack){
+    public Enemy(String name, int health, int attack){
         this.name = name;
         this.health = health;
         this.attack = attack;

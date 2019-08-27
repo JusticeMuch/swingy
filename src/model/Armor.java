@@ -1,4 +1,4 @@
-package src.character;
+package model;
 
 public class Armor{
     private String armorName;

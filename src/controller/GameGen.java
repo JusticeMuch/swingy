@@ -1,6 +1,7 @@
-package src;
+package controller;
 
-import src.character.*;
+import model.*;
+import view.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,7 +9,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
-import src.*;
 
 public class GameGen{
     
