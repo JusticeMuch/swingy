@@ -363,13 +363,13 @@ public class GameGen{
         String temp = "";
         System.out.println("Would you like to start a game (Y/N) ?");
          do {
-            System.out.println("You have to now choose to fight(1) or run(2) !!");
+            System.out.println("You have to now choose to (yes/y) or (no/n) !!");
             while (!ReadWrite.inp.hasNextLine()) {
                 System.out.println("That's not a yes or no");
                 ReadWrite.inp.next();
             }
             temp = ReadWrite.inp.nextLine().trim().toLowerCase();
-        } while ((temp.matches("no")|| temp.matches("no") || temp.matches("yes")|| temp.matches("y")));
+        } while (!(temp.matches("no")|| temp.matches("no") || temp.matches("yes")|| temp.matches("y")));
         if (temp.matches("no")|| temp.matches("no")){
             this.exitGame();
             return ;
