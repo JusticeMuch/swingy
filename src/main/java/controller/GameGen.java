@@ -311,11 +311,11 @@ public class GameGen{
         System.exit(0);
     }
 
-    public void selectCharacter(String input){
+    public void selectCharacter(int input){
         String [] heroesClass = {"wizard", "shieldMaiden", "swordsman", "adventurer"};
         int i = -1;
         String temp = "default";
-        if (input.matches("1")){
+        if (input == 1){
             System.out.println("Here are your options : ");
             
             for (Heroes j : GameGen.heroList){
@@ -331,7 +331,7 @@ public class GameGen{
                 this.selectCharacter(input);
             }
             System.out.println("Your hero's name is " + this.currentHero.getName() + " and his class is " + this.getCurrentHero().getHeroClass());
-        }else if (input.matches("2")){
+        }else if (input == 2){
             System.out.println("Please give your hero a name");
             temp = ReadWrite.inp.nextLine().trim();
             System.out.println();
@@ -357,8 +357,16 @@ public class GameGen{
     }
 
     public void startGame(){
+        int number = 0;
         System.out.println("Would you like to start a game (Y/N) ?");
-        String temp = ReadWrite.inp.nextLine().trim().toLowerCase();
+         do {
+            System.out.println("You have to now choose to fight(1) or run(2) !!");
+            while (!ReadWrite.inp.hasNextLine()) {
+                System.out.println("That's not a yes or no");
+                ReadWrite.inp.next();
+            }
+            String temp = ReadWrite.inp.nextLine().trim().toLowerCase();
+        } while ((temp.matches("no")|| temp.matches("no") || temp.matches("yes")|| temp.matches("y"));
         if (temp.matches("no")|| temp.matches("no")){
             this.exitGame();
             return ;
@@ -371,8 +379,15 @@ public class GameGen{
             return;
         }
         System.out.println("Would you like to load or create a character (1 to load / 2 to create ) ?");
-        this.selectCharacter(ReadWrite.inp.nextLine().trim().toLowerCase());
-
+        do {
+            System.out.println("You have to now choose to load(1) or create(2) a character !!");
+            while (!ReadWrite.inp.hasNextInt()) {
+                System.out.println("That's not a 1 or 2!");
+                ReadWrite.inp.next();
+            }
+            number = ReadWrite.inp.nextInt();
+        } while (number != 1 && number != 2);
+        this.selectCharacter(number);
     }
 
     public void game(){
