@@ -9,9 +9,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.validation.constraints.NotNull;
+
 
 public class GameGen{
-    
+    @NotNull(message = "variables may not be null")
     static public ArrayList <Heroes> heroList =  new ArrayList <Heroes>();
     private int level;
     private Heroes currentHero;
@@ -358,6 +360,7 @@ public class GameGen{
 
     public void startGame(){
         int number = 0;
+        String temp = "";
         System.out.println("Would you like to start a game (Y/N) ?");
          do {
             System.out.println("You have to now choose to fight(1) or run(2) !!");
@@ -365,8 +368,8 @@ public class GameGen{
                 System.out.println("That's not a yes or no");
                 ReadWrite.inp.next();
             }
-            String temp = ReadWrite.inp.nextLine().trim().toLowerCase();
-        } while ((temp.matches("no")|| temp.matches("no") || temp.matches("yes")|| temp.matches("y"));
+            temp = ReadWrite.inp.nextLine().trim().toLowerCase();
+        } while ((temp.matches("no")|| temp.matches("no") || temp.matches("yes")|| temp.matches("y")));
         if (temp.matches("no")|| temp.matches("no")){
             this.exitGame();
             return ;
