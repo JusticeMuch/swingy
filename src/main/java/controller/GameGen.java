@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 
 
 public class GameGen{
+
     @NotNull(message = "variables may not be null")
     static public ArrayList <Heroes> heroList =  new ArrayList <Heroes>();
     private int level;
@@ -20,6 +21,15 @@ public class GameGen{
     private int[][] grid;
     String temp;
     private int[] curentPosition;
+    private int dimensions;
+
+    public int getDimensions(){
+        return this.dimensions;
+    }
+
+    public void setDimensions(int level){
+        this.dimensions = (level - 1) * 5 + 10 - (level % 2);
+    }
 
     public void printGrid(){
         System.out.println();
@@ -75,10 +85,9 @@ public class GameGen{
 
     public void setLevelGrid(int level){
         if (level >= 1  && level <= 7){
-            level = (level - 1) * 5 + 10 - (level % 2);
-            this.grid = new int [level][level];
-            for (int i = 0; i < level ; i++){
-                for (int j = 0; j < level ;  j++){
+            this.grid = new int [dimensions][dimensions];
+            for (int i = 0; i < dimensions ; i++){
+                for (int j = 0; j < dimensions ;  j++){
                     this.grid[i][j] = 1;
                 }
             }
@@ -95,22 +104,21 @@ public class GameGen{
 
     public void setEnemiesArtefacts(int level){
         Random rand = new Random();
-        level = (level - 1) * 5 + 10 - (level % 2);
-        int enemies = (level * level) / 3;
-        int artefacts = (level * level) / 10;
-        int j = rand.nextInt(level);
-        int k = rand.nextInt(level);
+        int enemies = (dimensions * dimensions) / 3;
+        int artefacts = (dimensions * dimensions) / 10;
+        int j = rand.nextInt(dimensions);
+        int k = rand.nextInt(dimensions);
         for (int i = 0; i < artefacts; i++){
             while (this.grid[j][k] != 1){
-                j = rand.nextInt(level);
-                k = rand.nextInt(level);
+                j = rand.nextInt(dimensions);
+                k = rand.nextInt(dimensions);
             }
             this.grid[j][k] = 2;
         }
         for (int i = 0; i < enemies; i++){
             while (this.grid[j][k] != 1){
-                j = rand.nextInt(level);
-                k = rand.nextInt(level);
+                j = rand.nextInt(dimensions);
+                k = rand.nextInt(dimensions);
             }
             this.grid[j][k] = 3;
         }
@@ -272,12 +280,10 @@ public class GameGen{
     }
 
     public boolean getGameStatus(){
-        for (int i = 0; i < this.getGrid().length; i++){
-            if (this.getGrid()[i][this.getGrid().length - 1] == 5)
-                return true;
-            else if (this.getGrid()[i][0] == 5)
-                return true;
-        }
+       if (this.curentPosition[0] == 0 || this.curentPosition[1] == 0 || 
+           this.curentPosition[1] == dimensions - 1 || this.curentPosition[1] == dimensions -1 ){
+               return true;
+           }
         return false;
     }
 
@@ -400,9 +406,10 @@ public class GameGen{
             while (this.getLevel() != 8){
                 clearScreen();
                 System.out.println("You will now be starting level " + this.getLevel() + " Good luck , may the odds be ever in your favor!!");
+                this.setDimensions(level);
                 this.setLevelGrid(this.getLevel());
                 this.setEnemiesArtefacts(this.getLevel());
-                this.setCurrentPosition(this.getGrid().length/2 - 1, this.getGrid().length/2 - 1);
+                this.setCurrentPosition(dimensions/2 - 1, dimensions/2 - 1);
                 while (this.getGameStatus() == false){
                     this.move();
                     System.out.println();
