@@ -125,7 +125,8 @@ public class GameGen{
     }
 
 
-    public void move(){   // work on function
+    public void move(){
+        clearScreen();
         System.out.println("You are currently at position at " + (this.getCurrentPosition()[0] + 1) + "," + (this.getCurrentPosition()[1] + 1) + " on a board that is " 
                      +this.getGrid().length + " x " + this.getGrid().length);
         System.out.println();
@@ -139,7 +140,6 @@ public class GameGen{
            return ;
        }
        System.out.println(move);
-       //System.out.println(move.toCharArray().length);
        char c = move.toCharArray()[0];
        switch (c){
            case 'n':
@@ -184,6 +184,7 @@ public class GameGen{
 
            default:
                 System.out.println("Please input a direction or the letter beggining");
+                move();
        }
 
     }
@@ -367,7 +368,7 @@ public class GameGen{
     public void startGame(){
         int number = 0;
         String temp = "";
-        System.out.println("Would you like to start a game (Y/N) ?");
+        System.out.println("Would you like to start a game ?");
          do {
             System.out.println("You have to now choose to (yes/y) or (no/n) !!");
             while (!ReadWrite.inp.hasNextLine()) {
@@ -462,6 +463,6 @@ public class GameGen{
 
 // 1 is just normal blocks
 // 2 is enemies
-// 3 is artefacts
+// 3 is enemies
 // 4 is where the hero was 
 // 5 is where he is currently 

@@ -26,6 +26,7 @@ public class Console {
             ReadWrite.reader = new BufferedReader(new FileReader(ReadWrite.saveFile));
         } catch (FileNotFoundException e) {
             System.out.println("No savefile and cannot be created");
+            System.exit(1);
         }
         while ((fileContents[++counter] = ReadWrite.reader.readLine()) != null);
         String temp0 [][] = new String [100][13];
