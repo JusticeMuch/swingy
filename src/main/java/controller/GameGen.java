@@ -125,8 +125,7 @@ public class GameGen{
     }
 
 
-    public void move(){
-        clearScreen();
+    public void move(){   // work on function
         System.out.println("You are currently at position at " + (this.getCurrentPosition()[0] + 1) + "," + (this.getCurrentPosition()[1] + 1) + " on a board that is " 
                      +this.getGrid().length + " x " + this.getGrid().length);
         System.out.println();
@@ -140,6 +139,7 @@ public class GameGen{
            return ;
        }
        System.out.println(move);
+       //System.out.println(move.toCharArray().length);
        char c = move.toCharArray()[0];
        switch (c){
            case 'n':
@@ -184,7 +184,6 @@ public class GameGen{
 
            default:
                 System.out.println("Please input a direction or the letter beggining");
-                move();
        }
 
     }
@@ -342,7 +341,14 @@ public class GameGen{
             System.out.println("Your hero's name is " + this.currentHero.getName() + " and his class is " + this.getCurrentHero().getHeroClass());
         }else if (input == 2){
             System.out.println("Please give your hero a name");
-            temp = ReadWrite.inp.nextLine().trim();
+            do {
+                System.out.println("Please input a name ");
+                while (!ReadWrite.inp.hasNextLine()){
+                    System.out.println("Please no blanks");
+                    ReadWrite.inp.next();
+                }
+                temp = ReadWrite.inp.nextLine().trim().toLowerCase();
+            } while (temp.length() < 1);
             System.out.println();
             System.out.println("Please select one of the classes by selecting the corresponding index");
             System.out.println("1. Wizard");
@@ -371,7 +377,7 @@ public class GameGen{
         System.out.println("Would you like to start a game ?");
          do {
             System.out.println("You have to now choose to (yes/y) or (no/n) !!");
-            while (!ReadWrite.inp.hasNextLine()) {
+            while (!ReadWrite.inp.hasNextLine()){
                 System.out.println("That's not a yes or no");
                 ReadWrite.inp.next();
             }
@@ -463,6 +469,6 @@ public class GameGen{
 
 // 1 is just normal blocks
 // 2 is enemies
-// 3 is enemies
+// 3 is artefacts
 // 4 is where the hero was 
 // 5 is where he is currently 
