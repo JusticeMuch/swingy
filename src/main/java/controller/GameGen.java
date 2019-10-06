@@ -99,7 +99,7 @@ public class GameGen{
         this.currentHero.setExp(this.currentHero.getExp() + this.level * 1000);
         this.currentHero.setAttack(this.level * 30);
         this.currentHero.setDefense(this.level * 30);
-        this.currentHero.setHitPoints(this.level * 75);
+        this.currentHero.setHitPoints(this.level * 50);
     }
 
     public void setEnemiesArtefacts(int level){
@@ -124,7 +124,6 @@ public class GameGen{
         }
     }
 
-
     public void move(){   // work on function
         System.out.println("You are currently at position at " + (this.getCurrentPosition()[0] + 1) + "," + (this.getCurrentPosition()[1] + 1) + " on a board that is " 
                      +this.getGrid().length + " x " + this.getGrid().length);
@@ -138,8 +137,6 @@ public class GameGen{
            this.move();
            return ;
        }
-       System.out.println(move);
-       //System.out.println(move.toCharArray().length);
        char c = move.toCharArray()[0];
        switch (c){
            case 'n':
@@ -233,7 +230,7 @@ public class GameGen{
         if (number == 2){
             if (rand.nextInt(2) == 0){
                 System.out.println("You made it out alive, you're a good runner !!!");
-                this.sleep(3000);
+                this.sleep(500);
                 return (1);
             }else{
                 System.out.println("Get ready for a fight, the enemy catches up to you, slowpoke !!!!");
@@ -251,16 +248,16 @@ public class GameGen{
             if (rand.nextInt(2) == 1){
                 this.generateArtefact(this.getLevel());
             }
-            this.sleep(3000);
+            this.sleep(500);
             return (1);
         }else if (this.currentHero.getHitPoints() > 0 && enemy.getEnemyHealth() > 0){
             System.out.println("Your enemy survives, survive, I dare you !!!!");
             System.out.println();
-            this.sleep(3000);
+            this.sleep(500);
             return this.runOrFight(enemy);
         }else{
             System.out.println("You died");
-            this.sleep(3000);
+            this.sleep(500);
             return (2);
         }
     }
@@ -281,7 +278,7 @@ public class GameGen{
 
     public boolean getGameStatus(){
        if (this.curentPosition[0] == 0 || this.curentPosition[1] == 0 || 
-           this.curentPosition[1] == dimensions - 1 || this.curentPosition[1] == dimensions -1 ){
+           this.curentPosition[1] == dimensions - 1 || this.curentPosition[1] == dimensions - 1 ){
                return true;
            }
         return false;
@@ -293,9 +290,11 @@ public class GameGen{
         }else{
             System.out.println("Well done on completing the game");
         }
-
-        if (this.currentHero != null  && !(GameGen.heroList.contains(this.currentHero)))
+        if (this.currentHero != null)
+            this.currentHero.setHitPoints(this.level * 50);
+        if (this.currentHero != null  && !(GameGen.heroList.contains(this.currentHero))){
             GameGen.heroList.add(this.currentHero);
+        }
         try {
             ReadWrite.reader.close();
         } catch (IOException e) {
@@ -330,24 +329,32 @@ public class GameGen{
                 System.out.println("Index : " + ++i + " Hero Name : " + j.getName() + " Hero Class: "+ j.getHeroClass() + " Level: " + j.getLevel());
             }
             System.out.println("Please select one of the heroes by inputting the number of the corresponding index");
-            i = ReadWrite.inp.nextInt();
+            do{
+                while (!ReadWrite.inp.hasNextInt()) {
+                    System.out.println("That's not within the indexes given");
+                    ReadWrite.inp.next();
+                }
+                i = ReadWrite.inp.nextInt();
+            }while(i < 0 || i > GameGen.heroList.size());
+                
             if (i >= 0 && i < GameGen.heroList.size()){
                 this.currentHero = GameGen.heroList.get(i);
             }else{
                 clearScreen();
                 System.out.println("Error in selection");
-                this.selectCharacter(input);
+                exitGame();
             }
             System.out.println("Your hero's name is " + this.currentHero.getName() + " and his class is " + this.getCurrentHero().getHeroClass());
         }else if (input == 2){
+            clearScreen();
             System.out.println("Please give your hero a name");
             do {
-                System.out.println("Please input a name ");
                 while (!ReadWrite.inp.hasNextLine()){
                     System.out.println("Please no blanks");
                     ReadWrite.inp.next();
                 }
                 temp = ReadWrite.inp.nextLine().trim().toLowerCase();
+                temp = temp.replaceAll(" ", "_");
             } while (temp.length() < 1);
             System.out.println();
             System.out.println("Please select one of the classes by selecting the corresponding index");
@@ -355,7 +362,13 @@ public class GameGen{
             System.out.println("2. Shield Maiden");
             System.out.println("3. Swordsman");
             System.out.println("4. Adventurer");
-            i = ReadWrite.inp.nextInt();
+             do{
+                while (!ReadWrite.inp.hasNextInt()) {
+                    System.out.println("That's not within the indexes given");
+                    ReadWrite.inp.next();
+                }
+                i = ReadWrite.inp.nextInt();
+            }while(i < 1 || i > 4);
             if (i < 1 || i > 4 || temp.length() < 1){
                 clearScreen();
                 System.out.println("Please note that your input is incorrect, so here is another try ");
@@ -382,8 +395,8 @@ public class GameGen{
                 ReadWrite.inp.next();
             }
             temp = ReadWrite.inp.nextLine().trim().toLowerCase();
-        } while (!(temp.matches("no")|| temp.matches("no") || temp.matches("yes")|| temp.matches("y")));
-        if (temp.matches("no")|| temp.matches("no")){
+        } while (!(temp.matches("n")|| temp.matches("no") || temp.matches("yes")|| temp.matches("y")));
+        if (temp.matches("n")|| temp.matches("no")){
             this.exitGame();
             return ;
         }else if (temp.matches("yes")|| temp.matches("y")){

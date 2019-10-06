@@ -1,8 +1,8 @@
-/goinfre/jronald/Desktop/swingy/src/main/java/controller/GameGen.java
-/goinfre/jronald/Desktop/swingy/src/main/java/model/Armor.java
-/goinfre/jronald/Desktop/swingy/src/main/java/model/Heroes.java
-/goinfre/jronald/Desktop/swingy/src/main/java/model/Helm.java
-/goinfre/jronald/Desktop/swingy/src/main/java/controller/Console.java
-/goinfre/jronald/Desktop/swingy/src/main/java/view/ReadWrite.java
-/goinfre/jronald/Desktop/swingy/src/main/java/model/Enemy.java
-/goinfre/jronald/Desktop/swingy/src/main/java/model/Weapon.java
+/homes/jronald/Desktop/swingy/src/main/java/model/Heroes.java
+/homes/jronald/Desktop/swingy/src/main/java/model/Armor.java
+/homes/jronald/Desktop/swingy/src/main/java/controller/Console.java
+/homes/jronald/Desktop/swingy/src/main/java/view/ReadWrite.java
+/homes/jronald/Desktop/swingy/src/main/java/model/Weapon.java
+/homes/jronald/Desktop/swingy/src/main/java/controller/GameGen.java
+/homes/jronald/Desktop/swingy/src/main/java/model/Enemy.java
+/homes/jronald/Desktop/swingy/src/main/java/model/Helm.java

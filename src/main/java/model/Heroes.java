@@ -132,7 +132,7 @@ public class Heroes{
         Weapon weapon = new Weapon("default_" + heroType + "_weapon", Integer.parseInt(heroClass.get(heroType)[2]));
         this.setName(heroName);
         this.setHeroClass(heroType);
-        this.setLevel(0);
+        this.setLevel(1);
         this.setExp(0);
         this.setAttack(10);
         this.setDefense(10);

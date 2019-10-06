@@ -1,6 +1,6 @@
-controller/GameGen.class
 model/Armor.class
 model/Heroes.class
+controller/GameGen.class
 view/ReadWrite.class
 controller/Console.class
 model/Enemy.class
